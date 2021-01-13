@@ -13,6 +13,12 @@ set undodir=~/.vim/undodir	" Tell Vim where to save the undo directory.
 set undofile			    " Create an undofile for every file we open/create.
 set incsearch			    " While you search you get results.
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'jremmen/vim-ripgrep'  " Very fast grep.
