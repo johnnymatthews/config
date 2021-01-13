@@ -36,6 +36,12 @@ apt_update_utils() {
     ssh-keygen -t rsa -b 4096 -C "johnnymatthews@protonmail.com"
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
+    
+    echo ">>> [APT and utils] Copying config files..."
+    cp ./bashrc ~/.bashrc
+    cp ./hyper.js ~/.hyper.js
+    cp ./vimrc ~/.vimrc
+    cp ./zshrc ~/.zshrc
 
     echo ">>> [APT and utils] Configuration complete."
 }
@@ -55,6 +61,21 @@ programs_cmus() {
     cmus-remote --raw ":bind -f common u shell ~/.config/cmus/update-library.sh"
 
     echo ">>> [Cmus] Install complete."
+}
+
+programs_hyper() {
+    echo ">>> [Hyper] Install started..."
+
+    echo ">>> [Hyper] Downloading Hyper..."
+    wget -O hyper.deb https://releases.hyper.is/download/deb
+
+    echo ">>> [Hyper] Installing Hyper..."
+    apt install ./hyper.deb -y
+
+    echo ">>> [Hyper] Removing .deb file..."
+    rm ./hyper.deb
+
+    echo ">>> [Hyper] Install complete."
 }
 
 programs_node_js() {
