@@ -1,5 +1,7 @@
 #!/bin/bash
 
+WORKING_DIR=$(pwd)
+
 main() {
     echo "==================== START OF SCRIPT ===================="
     echo ""
@@ -98,11 +100,7 @@ programs_unix_pass() {
     git clone https://github.com/roddhjav/pass-update/ ~/Downloads/pass-update
     cd ~/Downloads/pass-update
     make install
-    cd ~
-    rm -rf ~/Downloads/pass-update
-
-    echo ">>> [Unix Pass] Initializing pass directory with GPG key..."
-    pass init johnny
+    cd $WORKING_DIR
 
     echo ">>> [Unix Pass] Install complete."
 }
