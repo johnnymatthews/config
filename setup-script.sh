@@ -43,6 +43,9 @@ apt_update_utils() {
     cp ./vimrc ~/.vimrc
     cp ./zshrc ~/.zshrc
 
+    echo ">>> [APT and utils] Removing Nano..."
+    apt remove nano -y
+
     echo ">>> [APT and utils] Configuration complete."
 }
 
