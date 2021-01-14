@@ -98,11 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH=$PATH:/usr/local/go/bin
+
 alias t="todo-txt"
 alias ytdl="cd ~/Downloads && youtube-dl -x --audio-format mp3"
 alias t-sync="cd ~/.config/todo && git pull && git add . && git commit -m 'Updates' && git push"
-export PATH=$PATH:/usr/local/go/bin
-source "$HOME/.cargo/env"
 
 # Copy contents of file to clipboard.
 function copy() {

@@ -11,6 +11,7 @@ main() {
     programs_node_js
     programs_pandoc
     programs_python3
+    programs_todo
     programs_unix_pass
     programs_vim
     programs_youtube_dl
@@ -109,6 +110,22 @@ programs_python3() {
     apt-get autoremove --purge
 
     echo ">>> [Python3] Install complete."
+}
+
+programs_todo() {
+    echo ">>> [Todo-txt] Install started..."
+
+    echo ">>> [Todo-txt] Download todo-txt..."
+    wget https://github.com/todotxt/todo.txt-cli/releases/download/v2.12.0/todo.txt_cli-2.12.0.tar.gz
+    tar xvzf todo.txt_cli-2.12.0.tar.gz
+    rm todo.txt_cli-2.12.0.tar.gz
+
+    echo ">>> [Todo-txt] Move executable to /usr/local/bin/"
+    cd todo.txt_cli-2.12.0
+    cp todo.sh /usr/local/bin
+     
+    
+    echo ">>> [Todo-txt] Install complete."
 }
 
 programs_unix_pass() {
