@@ -100,11 +100,50 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:/usr/local/go/bin
 
-alias t="todo-txt"
+alias t="todo.sh -d ~/.config/todo/config"
 alias ytdl="cd ~/Downloads && youtube-dl -x --audio-format mp3"
 alias t-sync="cd ~/.config/todo && git pull && git add . && git commit -m 'Updates' && git push"
 
+# UTILITY FUNCTIONS
 # Copy contents of file to clipboard.
 function copy() {
-    cat ./$1 | xclip -i -selection clipboard
+    cat $1 | xclip -i -selection clipboard
 }
+
+# VPN CONNECTIONS
+function vpn_connect() {
+    echo $1
+}
+
+# vim mode config
+# ---------------
+
+# Activate vim mode.
+bindkey -v
+
+# Remove mode switching delay.
+KEYTIMEOUT=5
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+# Use beam shape cursor for each new prompt.
+preexec() {
+   echo -ne '\e[5 q'
+}
+
