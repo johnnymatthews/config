@@ -12,6 +12,7 @@ set nobackup			    " Don't need backup, because we'll make our own.
 set undodir=~/.vim/undodir	" Tell Vim where to save the undo directory.
 set undofile			    " Create an undofile for every file we open/create.
 set incsearch			    " While you search you get results.
+set cursorline              " Highlights current line.
 
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -27,7 +28,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}    "Autocomplete for loads of languages.
 Plug 'mbbill/undotree'      " Make undoing stuff easier.
 Plug 'https://github.com/kien/ctrlp.vim.git'    " Nice file finding.
-
 call plug#end()
 
 set background=dark
@@ -38,10 +38,22 @@ endif
 
 let mapleader = " "         " Sets the leader (command key) to spacebar.
 let g:netrw_browse_split=2  " Make the sidebar 2 across
+let g:netrw_banner = 0
 let g:netrw_winsize = 25    " Sidebar window should be 25%.
+
+" Always keep cursor in the middle of the window.
+" -----------------------------------------------
+nnoremap j jzz
+nnoremap k kzz
+" -----------------------------------------------
 
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>f gg=G<CR>
+
+" Create new window, open file browser, set window to 25%.
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
+
