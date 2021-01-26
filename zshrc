@@ -5,17 +5,26 @@ export ZSH="/home/johnny/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-export PATH=$PATH:/usr/local/go/bin
 # --------------------
 
+# PATH UPDATES
+# ------------
+export PATH=$PATH:/usr/local/go/bin
+# ------------
 
 # ALIASES
 # -------
 alias t="todo.sh -d ~/.config/todo/config"
-alias ytdl="cd ~/Downloads && youtube-dl -x --audio-format mp3"
+alias ytdl="cd ~/Downloads && youtube-dl -x "
 alias t-sync="cd ~/.config/todo && git pull && git add . && git commit -m 'Updates' && git push"
 # -------
 
+# NODE INSTALLATION
+# ----------------- 
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# ----------------- 
 
 # UTILITY FUNCTIONS
 # -----------------
@@ -60,4 +69,10 @@ preexec() {                             # Use beam shape cursor for each new pro
    echo -ne '\e[5 q'
 }
 # ---------------
+
+# CONNECT TO VPN
+function start_vpn() {
+    cd /etc/openvpn
+    openvpn ca-mon.prod.surfshark.com_udp.opvn
+}
 
