@@ -7,6 +7,11 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 # --------------------
 
+# THEME
+# -----
+source ~/.config/zsh/minimal.zsh
+# -----
+
 # PATH UPDATES
 # ------------
 export PATH=$PATH:/usr/local/go/bin
