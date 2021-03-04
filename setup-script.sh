@@ -42,7 +42,6 @@ apt_update_utils() {
     cp ./bashrc ~/.bashrc
     cp ./hyper.js ~/.hyper.js
     cp ./vimrc ~/.vimrc
-    cp ./zshrc ~/.zshrc
 
     echo ">>> [APT and utils] Removing Nano..."
     apt remove nano -y
@@ -67,26 +66,14 @@ programs_cmus() {
     echo ">>> [Cmus] Install complete."
 }
 
-programs_hyper() {
-    echo ">>> [Hyper] Install started..."
-
-    echo ">>> [Hyper] Downloading Hyper..."
-    wget -O hyper.deb https://releases.hyper.is/download/deb
-
-    echo ">>> [Hyper] Installing Hyper..."
-    apt install ./hyper.deb -y
-
-    echo ">>> [Hyper] Removing .deb file..."
-    rm ./hyper.deb
-
-    echo ">>> [Hyper] Install complete."
-}
-
 programs_node_js() {
 	echo ">>> [Node.js] Install started..."
 
-	echo ">>> [Node.js] Installing Node.js and NPM"
-	apt install nodejs npm -y
+	echo ">>> [Node.js] Installing NVM..."
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
+	echo ">>> [Node.js] Installing Node.js and NPM with NVM"
+    nvm install node 
 
 	echo ">>> [Node.js] Install complete."
 }
@@ -173,19 +160,10 @@ programs_zsh() {
     echo ">>> [Zsh] Installing oh-my-zsh..."
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    echo ">>> [Zsh] Install complete."
-}
+    echo ">>> [Zsh] Setting .zshrc..."
+    cp ./zshrc ~/.zshrc
 
-programs_manual() {
-    echo "---------- Programs to manually install ----------
-These programs have to be installed manually, unfortunately. This function just echos out the steps for each program.
---------------------------------------------------
-    [Zoom]
-        1. Download the latest installer from the [Zoom releases page](https://zoom.us/download?os=linux).
-        2. Install Zoom using: sudo apt install ~/Download/zoom_amd64.deb
-        3. Edit ~/.config/zoomus.conf and change autoScale=true to false.
-        4. Done!
-        "
+    echo ">>> [Zsh] Install complete."
 }
 
 # Large variables.
