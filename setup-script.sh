@@ -147,6 +147,9 @@ programs_youtube_dl() {
 
     curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
     chmod a+rx /usr/local/bin/youtube-dl
+    
+    echo ">>> [Youtube-dl] Installing ffmpeg..."
+    apt install ffmpeg -y
 
     echo ">>> [Youtube-dl] Install complete."
 }
